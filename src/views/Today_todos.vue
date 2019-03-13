@@ -120,13 +120,10 @@ export default {
       if(res.data.code==200){
         let newData = res.data.data[0];
         let created_at = newData.created_at;
-        let id = newData.id;
-        console.log(id);
         let created_time = new Date(new Date(created_at).toLocaleDateString()).getTime();
         let now_time = new Date(new Date().toLocaleDateString()).getTime();
         if(created_time >= now_time){
-          console.log(ooo);
-          this.$router.push({name:'notreflection',auery:{id:newData.id}});
+          this.$router.push({name:'notreflection',params:{id:newData.id}});
         }
       }else if(res.data.code==0){
         console.log(data)
@@ -137,7 +134,6 @@ export default {
   },
   methods:{
     relevance(today){
-      console.log(today);
       this.show = true;
       let token = localStorage.getItem('tokens');
       let URL = 'http://localhost:3000/api/okr';
@@ -225,7 +221,6 @@ export default {
       }
       let token = localStorage.getItem('tokens');
       let URL = 'http://localhost:3000/api/todos';
-      console.log(this.todoOne);
       let data = [{value:this.todoOne,keyresults:this.okrOne},
         {value:this.todoTwo,keyresults:this.okrTwo},
         {value:this.todoThree,keyresults:this.okrThree}];
@@ -236,7 +231,8 @@ export default {
       }).then(res=>{
         if(res.data.code==200){
           let todos_id = res.data.todos_id;
-          this.$router.push({name:'notreflection',query:{id:todos_id}});
+          console.log(todos_id);
+          this.$router.push({name:'notreflection',params:{id:todos_id}});
         }else if(res.data.code==0){
           console.log(data)
         }
@@ -254,12 +250,10 @@ export default {
       }else{
         this.temporary = this.writingThree;
       }
-      console.log(this.temporary);
     }
   }
 }
 </script>
-
 <style lang="less">
 @divide: 10;
 @psdWidth: 750px;
@@ -276,15 +270,12 @@ html,body{
   width: 100%;
   height: 100%;
   background-color:#f7f7f7;
-
 }
 .not-section{
   .container{
-    // display: none;
     width: 750px/@ppr;
     height: 1294px/@ppr;
     .todos-contaner{
-      // background-color:red;
       padding-bottom:30px/@ppr;
       .todos-section{
         width: 650px/@ppr;
@@ -292,31 +283,29 @@ html,body{
         padding-bottom:50px/@ppr;
         border-radius: 5px 5px 0 0;
         .nav-list{
-              display: flex;
-              justify-content: space-between;
-              border-radius: 18px 5px 0 0;
-              background-color:#a7cae4;
-              height: 90px/@ppr;
-              .nav-list-item-link{
-                  display: inline-block;
-                  text-align: center;
-                  line-height: 90px/@ppr;
-                  width: 33%;
-                  font-size: 28px/@ppr;
-                  vertical-align: top;
-                  margin: 0;
-                  color:#000;
-              }
-              .nav-list-item-link:nth-child(1){
-                  background-image: url(./../assets/image/not.png);
-                  background-size: cover;
-                  background-repeat: no-repeat;
-              }
+          display: flex;
+          justify-content: space-between;
+          border-radius: 18px 5px 0 0;
+          background-color:#a7cae4;
+          height: 90px/@ppr;
+          .nav-list-item-link{
+            display: inline-block;
+            text-align: center;
+            line-height: 90px/@ppr;
+            width: 33%;
+            font-size: 28px/@ppr;
+            vertical-align: top;
+            margin: 0;
+            color:#000;
           }
-
+          .nav-list-item-link:nth-child(1){
+            background-image: url(./../assets/image/not.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        }
         .todos-content{
           width: 100%;
-
           .todos-title{
             font-size: 36px/@ppr;
             font-weight: 600;
@@ -346,8 +335,7 @@ html,body{
                 line-height: 28px/@ppr;
                 color: #b3b3b3;
                 outline: none;
-
-              }
+                }
               }
               .todos-click{
                 vertical-align: top;
@@ -401,7 +389,6 @@ html,body{
               background-color:#f2f8fc;
               border-radius: 5px/@ppr;
               resize:none;
-
             }
           }
         }
@@ -511,7 +498,6 @@ html,body{
             .shade-content-text{
               position:relative;
               width: 690px/@ppr;
-              // height: 74px/@ppr;
               border:1px/@ppr solid #cccccc;
               border-radius:7px/@ppr;
               padding-top: 20px/@ppr;
@@ -523,7 +509,6 @@ html,body{
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-
               }
               .shade-text-english{
                 display: none;
@@ -534,7 +519,6 @@ html,body{
             .shade-content-text.active{
                 background-color: #999;
                 border:1px solid #999;
-
               }
             .shade-content-text:before{
               content: '';
@@ -567,24 +551,24 @@ html,body{
             }
           }
           .shade-select{
-                width: 100%;
-                background-color:#fff;
-                .shade-select-block{
-                  width: 690px/@ppr;
-                  h2{
-                    font-size: 28px/@ppr;
-                    line-height: 28px/@ppr;
-                    color: #333333;
-                    margin-top: 22px/@ppr;
-                  }
-                  p{
-                    margin-top:12px/@ppr;
-                    margin-bottom: 30px/@ppr;
-                    font-size: 24px/@ppr;
-                    line-height: 34px/@ppr;
-                    color: #333333;
-                  }
-                }
+            width: 100%;
+            background-color:#fff;
+            .shade-select-block{
+              width: 690px/@ppr;
+              h2{
+                font-size: 28px/@ppr;
+                line-height: 28px/@ppr;
+                color: #333333;
+                margin-top: 22px/@ppr;
+              }
+              p{
+                margin-top:12px/@ppr;
+                margin-bottom: 30px/@ppr;
+                font-size: 24px/@ppr;
+                line-height: 34px/@ppr;
+                color: #333333;
+              }
+            }
           }
           .confirm-button{
             width: 100%;
@@ -597,11 +581,8 @@ html,body{
             line-height: 88px/@ppr;
           }
         }
-
       }
-
     }
   }
 }
-
 </style>

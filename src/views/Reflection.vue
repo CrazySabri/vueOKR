@@ -94,11 +94,11 @@ export default {
   },
   created(){
     let token = localStorage.getItem("tokens");
-    let todos_id = this.$route.params.id;
-    let URL = 'http://localhost:3000/api/todos/' + todos_id;
-    this.axios.get(URL,{
-      params:{"token":token}
-    }).then(res=>{
+    let id = this.$route.params.id;
+    let URL = 'http://localhost:3000/api/todos/' + id;
+    this.axios.get(URL,
+      {"token":token}
+    ).then(res=>{
       if(res.data.code==200){
         this.surprise=res.data.data.surprise;
         this.todosArr=res.data.data.todos;
@@ -145,13 +145,13 @@ export default {
     },
     save(){
       let token = localStorage.getItem('tokens');
-      let todos_id =this.$route.params.id;
+      let id =this.$route.params.id;
       let reflect = this.reflect;
       let state = this.state;
       if(!reflect || !state){
         return alert('请输入反思以及选择情绪')
       }
-      let URL ='http://localhost:3000/api/todos/' + todos_id;
+      let URL ='http://localhost:3000/api/todos/' + id;
       this.axios.post(URL,{
         todos:this.complete,
         reflect:this.reflect,
@@ -171,311 +171,301 @@ export default {
 </script>
 
 <style type="text/css" lang="less">
-@divide: 10;
-@psdWidth: 750px;
-@ppr: @psdWidth/@divide/1rem;
-
-*{
-  margin:0 auto;
-  padding:0;
-  box-sizing:border-box;
-}
-a{
-  text-decoration: none;
-}
-html,body{
-  width: 100%;
-  height: 100%;
-}
-.container{
-  width: 750px/@ppr;
-  background-color:#f7f7f7;
-  padding-top: 30px/@ppr;
-  .todos-section{
-    width: 650px/@ppr;
-    .todos-topbar{
-      width: 100%;
-      height: 79px/@ppr;
-      font-size: 0;
-      position:relative;
-      .topbar-background{
-        position:absolute;
-        top:0;
-        left: 0;
-        width: 650px/@ppr;
-        height: 79px/@ppr;
-      }
-      .topbar-operation{
-        display: inline-block;
-        width: 33.33%;
-        vertical-align: top;
-        text-align: center;
-        font-size: 28px/@ppr;
-        color: #000000;
-        font-weight: 600;
-        position:absolute;
-        top:33px/@ppr;
-      }
-      .topbar-operation.step-2{
-        left: 216px/@ppr;
-      }
-      .topbar-operation.step-3{
-        left: 433px/@ppr;
-      }
-    }
-    .todos-content{
-      width: 100%;
-      // height: 830px/@ppr;
-      background-color:#fff;
-      vertical-align: top;
-      border-radius:0 0 25px/@ppr 25px/@ppr;
-      .todos-today{
-        text-align: center;
-        padding-top:60px/@ppr;
-        .todos-title{
-          font-size: 36px/@ppr;
-          color: #000000;
-          font-weight: 600;
-        }
-        .todos-list{
-          margin-top: 60px/@ppr;
-          .todos-item{
-            width: 590px/@ppr;
-            height: 110px/@ppr;
-            border-bottom:1px/@ppr solid #000;
-            font-size: 0;
-            position:relative;
-            .todo-work{
-              display: inline-block;
-              width: 472px/@ppr;
-              height: 100%;
-              font-size: 28px/@ppr;
-              color: #b3b3b3;
-              line-height: 110px/@ppr;
-              text-align: left;
-              font-weight: 600;
-              white-space:nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              padding-left:50px/@ppr;
-
-              }
-
-            .todos-click{
-              vertical-align: top;
-              display: inline-block;
-              width: 118px/@ppr;
-              height: 100%;
-              line-height: 110px/@ppr;
-              font-size: 28px/@ppr;
-              color: #333;
-              text-align: center;
-              font-weight: 600;
-            }
-          }
-          .todos-item:before{
-            content: '';
-            display: inline-block;
-            position:absolute;
-            width: 30px/@ppr;
-            height: 30px/@ppr;
-            border-radius:3px;
-            border:1px solid #999;
-            top: 36px/@ppr;
-            left: 0;
-          }
-          .todos-item:after{
-            content: '';
-            display: inline-block;
-            width: 1px/@ppr;
-            height: 54px/@ppr;
-            background-color:#333;
-            position:absolute;
-            top: 28px/@ppr;
-            right: 118px/@ppr;
-          }
-
-          .todos-item.active:before{
-            display: inline-block;
-            border:none;
-            width: 30px/@ppr;
-            height: 30px/@ppr;
-            background-image:url();
-            background: url(./../assets/image/save-frame.png) no-repeat center center/ contain;
-
-          }
-          .todos-item.active{
-            .todo-work{
-              color: #333;
-              text-decoration:line-through;
-            }
-          }
-
-
-        }
-      }
-      .todos-happiness{
-        width: 100%;
-        padding-top:38px/@ppr;
-        padding-left:50px/@ppr;
-        padding-bottom:15px/@ppr;
-        text-align: center;
-        border-bottom:1px/@ppr solid #cccccc;
-        .happiness-title{
-          // text-align: center;
-          font-size: 36px/@ppr;
-          color: #000;
-        }
-        .happiness-text{
-          width: 540px/@ppr;
-          margin-top:20px/@ppr;
-          font-size: 28px/@ppr;
-          color: #b3b3b3;
-          font-weight: 600;
-          line-height: 48px/@ppr;
-          position:relative;
-          text-align: left;
-        }
-        .happiness-text:before{
-          content: '';
-          display: inline-block;
-          width: 30px/@ppr;
-          height: 30px/@ppr;
-          border-radius:3px/@ppr;
-          border:1px/@ppr solid #cccccc;
-          margin-right: 20px/@ppr;
-          cursor: pointer;
-          position: absolute;
-          top:5px/@ppr;
-          left: -50px/@ppr;
-
-        }
-      }
-      .todos-introspection{
-        width: 100%;
-        height: 243px/@ppr;
-        padding:30px/@ppr 30px/@ppr 0 30px/@ppr;
-        font-size: 0;
-        .introspection-title{
-          font-size: 36px/@ppr;
-          color: #000000;
-          font-weight:700;
-        }
-        .introspection-title:after{
-          content: '';
-          display: inline-block;
-          width: 17px/@ppr;
-          height: 17px/@ppr;
-          background: url(./../assets/image/save-xin.png) no-repeat center center/ contain;
-          vertical-align: top;
-          margin-top: 10px/@ppr;
-          margin-left: 7px/@ppr;
-        }
-        .introspection-text{
-          width:590px/@ppr;
-          height: 158px/@ppr;
-          background-color:#f2f8fc;
-          border:none;
-          font-size: 28px/@ppr;
-          color: #000;
-          padding-left:20px/@ppr;
-          font-weight: 600;
-          vertical-align: top;
-          resize: none;
-          outline: none;
-          margin-top: 20px/@ppr;
-
-        }
-      }
-      .todos-element{
-        width: 100%;
-        padding:30px/@ppr;
-        .element-title{
-          font-size: 36px/@ppr;
-          color: #000000;
-          font-weight:700;
-        }
-        .element-title:after{
-          content: '';
-          display: inline-block;
-          width: 17px/@ppr;
-          height: 17px/@ppr;
-          background: url(./../assets/image/save-xin.png) no-repeat center center/ contain;
-          vertical-align: top;
-          margin-top: 10px/@ppr;
-          margin-left: 7px/@ppr;
-        }
-        .element-text{
-          font-size: 24px/@ppr;
-          color: #b3b3b3;
-          margin-top: 4px/@ppr;
-        }
-        .element-list{
-          margin-top: 20px/@ppr;
-          .element-item{
-            width: 590px/@ppr;
-            height: 75px/@ppr;
-            border:1px/@ppr solid #000;
-            border-radius: 4px/@ppr;
-            text-align: center;
-            position:relative;
-            margin-bottom:10px/@ppr;
-            .element-item-text{
-              font-size: 24px/@ppr;
-              color: #333;
-              font-weight: 600;
-              line-height: 29px/@ppr;
-              padding-top:5px/@ppr;
-            }
-          }
-          .element-item:before{
-            content: '';
-            display: inline-block;
-            width: 16px/@ppr;
-            height: 33px/@ppr;
-            background: url(./../assets/image/save-icon_move.png) no-repeat center center/ contain;
-            position:absolute;
-            top:20px/@ppr;
-            left: 20px/@ppr;
-          }
-          .element-item.active{
-            background-color:#999;
-            color:#333;
-          }
-        }
-      }
-    }
-    .todos-confirm{
-      margin-top: 30px/@ppr;
+  @divide: 10;
+  @psdWidth: 750px;
+  @ppr: @psdWidth/@divide/1rem;
+  *{
+    margin:0 auto;
+    padding:0;
+    box-sizing:border-box;
+  }
+  a{
+    text-decoration: none;
+  }
+  html,body{
+    width: 100%;
+    height: 100%;
+  }
+  .container{
+    width: 750px/@ppr;
+    background-color:#f7f7f7;
+    padding-top: 30px/@ppr;
+    .todos-section{
       width: 650px/@ppr;
-      height: 88px/@ppr;
-      background-color:#000000;
-      color: #fff;
-      font-size: 32px/@ppr;
-      line-height: 88px/@ppr;
-      font-weight:600;
-      border-radius:5px/@ppr;
-      text-align: center;
-    }
-    .todos-confirm-hint{
-      text-align: center;
-      font-size: 0;
-      margin-top: 30px/@ppr;
-      padding-bottom: 30px/@ppr;
-      img{
-        display: inline-block;
-        margin-right:10px/@ppr;
-        vertical-align: top;
+      .todos-topbar{
+        width: 100%;
+        height: 79px/@ppr;
+        font-size: 0;
+        position:relative;
+        .topbar-background{
+          position:absolute;
+          top:0;
+          left: 0;
+          width: 650px/@ppr;
+          height: 79px/@ppr;
+        }
+        .topbar-operation{
+          display: inline-block;
+          width: 33.33%;
+          vertical-align: top;
+          text-align: center;
+          font-size: 28px/@ppr;
+          color: #000000;
+          font-weight: 600;
+          position:absolute;
+          top:33px/@ppr;
+        }
+        .topbar-operation.step-2{
+          left: 216px/@ppr;
+        }
+        .topbar-operation.step-3{
+          left: 433px/@ppr;
+        }
       }
-      p{
-        display: inline-block;
-        font-size: 24px/@ppr;
-        font-weight: 600;
-        color: #ff1d25;
+      .todos-content{
+        width: 100%;
+        background-color:#fff;
         vertical-align: top;
+        border-radius:0 0 25px/@ppr 25px/@ppr;
+        .todos-today{
+          text-align: center;
+          padding-top:60px/@ppr;
+          .todos-title{
+            font-size: 36px/@ppr;
+            color: #000000;
+            font-weight: 600;
+          }
+          .todos-list{
+            margin-top: 60px/@ppr;
+            .todos-item{
+              width: 590px/@ppr;
+              height: 110px/@ppr;
+              border-bottom:1px/@ppr solid #000;
+              font-size: 0;
+              position:relative;
+              .todo-work{
+                display: inline-block;
+                width: 472px/@ppr;
+                height: 100%;
+                font-size: 28px/@ppr;
+                color: #b3b3b3;
+                line-height: 110px/@ppr;
+                text-align: left;
+                font-weight: 600;
+                white-space:nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-left:50px/@ppr;
+
+                }
+              .todos-click{
+                vertical-align: top;
+                display: inline-block;
+                width: 118px/@ppr;
+                height: 100%;
+                line-height: 110px/@ppr;
+                font-size: 28px/@ppr;
+                color: #333;
+                text-align: center;
+                font-weight: 600;
+              }
+            }
+            .todos-item:before{
+              content: '';
+              display: inline-block;
+              position:absolute;
+              width: 30px/@ppr;
+              height: 30px/@ppr;
+              border-radius:3px;
+              border:1px solid #999;
+              top: 36px/@ppr;
+              left: 0;
+            }
+            .todos-item:after{
+              content: '';
+              display: inline-block;
+              width: 1px/@ppr;
+              height: 54px/@ppr;
+              background-color:#333;
+              position:absolute;
+              top: 28px/@ppr;
+              right: 118px/@ppr;
+            }
+            .todos-item.active:before{
+              display: inline-block;
+              border:none;
+              width: 30px/@ppr;
+              height: 30px/@ppr;
+              background-image:url();
+              background: url(./../assets/image/save-frame.png) no-repeat center center/ contain;
+            }
+            .todos-item.active{
+              .todo-work{
+                color: #333;
+                text-decoration:line-through;
+              }
+            }
+          }
+        }
+        .todos-happiness{
+          width: 100%;
+          padding-top:38px/@ppr;
+          padding-left:50px/@ppr;
+          padding-bottom:15px/@ppr;
+          text-align: center;
+          border-bottom:1px/@ppr solid #cccccc;
+          .happiness-title{
+            font-size: 36px/@ppr;
+            color: #000;
+          }
+          .happiness-text{
+            width: 540px/@ppr;
+            margin-top:20px/@ppr;
+            font-size: 28px/@ppr;
+            color: #b3b3b3;
+            font-weight: 600;
+            line-height: 48px/@ppr;
+            position:relative;
+            text-align: left;
+          }
+          .happiness-text:before{
+            content: '';
+            display: inline-block;
+            width: 30px/@ppr;
+            height: 30px/@ppr;
+            border-radius:3px/@ppr;
+            border:1px/@ppr solid #cccccc;
+            margin-right: 20px/@ppr;
+            cursor: pointer;
+            position: absolute;
+            top:5px/@ppr;
+            left: -50px/@ppr;
+
+          }
+        }
+        .todos-introspection{
+          width: 100%;
+          height: 243px/@ppr;
+          padding:30px/@ppr 30px/@ppr 0 30px/@ppr;
+          font-size: 0;
+          .introspection-title{
+            font-size: 36px/@ppr;
+            color: #000000;
+            font-weight:700;
+          }
+          .introspection-title:after{
+            content: '';
+            display: inline-block;
+            width: 17px/@ppr;
+            height: 17px/@ppr;
+            background: url(./../assets/image/save-xin.png) no-repeat center center/ contain;
+            vertical-align: top;
+            margin-top: 10px/@ppr;
+            margin-left: 7px/@ppr;
+          }
+          .introspection-text{
+            width:590px/@ppr;
+            height: 158px/@ppr;
+            background-color:#f2f8fc;
+            border:none;
+            font-size: 28px/@ppr;
+            color: #000;
+            padding-left:20px/@ppr;
+            font-weight: 600;
+            vertical-align: top;
+            resize: none;
+            outline: none;
+            margin-top: 20px/@ppr;
+          }
+        }
+        .todos-element{
+          width: 100%;
+          padding:30px/@ppr;
+          .element-title{
+            font-size: 36px/@ppr;
+            color: #000000;
+            font-weight:700;
+          }
+          .element-title:after{
+            content: '';
+            display: inline-block;
+            width: 17px/@ppr;
+            height: 17px/@ppr;
+            background: url(./../assets/image/save-xin.png) no-repeat center center/ contain;
+            vertical-align: top;
+            margin-top: 10px/@ppr;
+            margin-left: 7px/@ppr;
+          }
+          .element-text{
+            font-size: 24px/@ppr;
+            color: #b3b3b3;
+            margin-top: 4px/@ppr;
+          }
+          .element-list{
+            margin-top: 20px/@ppr;
+            .element-item{
+              width: 590px/@ppr;
+              height: 75px/@ppr;
+              border:1px/@ppr solid #000;
+              border-radius: 4px/@ppr;
+              text-align: center;
+              position:relative;
+              margin-bottom:10px/@ppr;
+              .element-item-text{
+                font-size: 24px/@ppr;
+                color: #333;
+                font-weight: 600;
+                line-height: 29px/@ppr;
+                padding-top:5px/@ppr;
+              }
+            }
+            .element-item:before{
+              content: '';
+              display: inline-block;
+              width: 16px/@ppr;
+              height: 33px/@ppr;
+              background: url(./../assets/image/save-icon_move.png) no-repeat center center/ contain;
+              position:absolute;
+              top:20px/@ppr;
+              left: 20px/@ppr;
+            }
+            .element-item.active{
+              background-color:#999;
+              color:#333;
+            }
+          }
+        }
+      }
+      .todos-confirm{
+        margin-top: 30px/@ppr;
+        width: 650px/@ppr;
+        height: 88px/@ppr;
+        background-color:#000000;
+        color: #fff;
+        font-size: 32px/@ppr;
+        line-height: 88px/@ppr;
+        font-weight:600;
+        border-radius:5px/@ppr;
+        text-align: center;
+      }
+      .todos-confirm-hint{
+        text-align: center;
+        font-size: 0;
+        margin-top: 30px/@ppr;
+        padding-bottom: 30px/@ppr;
+        img{
+          display: inline-block;
+          margin-right:10px/@ppr;
+          vertical-align: top;
+        }
+        p{
+          display: inline-block;
+          font-size: 24px/@ppr;
+          font-weight: 600;
+          color: #ff1d25;
+          vertical-align: top;
+        }
       }
     }
   }
-}
-
 </style>

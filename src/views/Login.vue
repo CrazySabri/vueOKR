@@ -38,9 +38,7 @@
     </div>
   </div>
 </template>
-
 <script>
-
 export default {
   name: 'login',
   data(){
@@ -93,172 +91,170 @@ export default {
   }
 }
 </script>
-
 <style type="text/css" lang="less">
-@divide: 10;
-@psdWidth: 750px;
-@ppr: @psdWidth/@divide/1rem;
-
-.lunar-login{
-  background-color:#fff;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  .lunar-container{
-    text-align:center;
-    padding:150px/@ppr 0 124px/@ppr;
-    .lunar-logo{
-      width: 200px/@ppr;
-      height: 200px/@ppr;
-      margin:0 auto;
-      .logo-image{
-        display: block;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-      }
-    }
-    .lunar-name-input{
-      margin-top:142px/@ppr;
-      padding:0 30px/@ppr;
-      position: relative;
-      height: 68px/@ppr;
-      .name-image{
-        display: inline-block;
-        width: 30px/@ppr;
-        height: 27px/@ppr;
-        vertical-align: top;
-        font-size: 0;
-        .name-map{
-          display: inline-block;
+  @divide: 10;
+  @psdWidth: 750px;
+  @ppr: @psdWidth/@divide/1rem;
+  .lunar-login{
+    background-color:#fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    .lunar-container{
+      text-align:center;
+      padding:150px/@ppr 0 124px/@ppr;
+      .lunar-logo{
+        width: 200px/@ppr;
+        height: 200px/@ppr;
+        margin:0 auto;
+        .logo-image{
+          display: block;
+          text-align: center;
           width: 100%;
           height: 100%;
-          vertical-align: top;
         }
       }
-      .name-input{
-        display: inline-block;
-        height: 30px/@ppr;
-        width: 600px/@ppr;
-        border:none;
-        vertical-align:top;
-        outline: none;
-        font-size: 28px/@ppr;
-        margin-left:30px/@ppr;
-      }
-    }
-    .lunar-name-input:before{
-      content: '';
-      display: inline-block;
-      width: 690px/@ppr;
-      height: 2px/@ppr;
-      background-color:#333;
-      position:absolute;
-      bottom: 0;
-      left:30px/@ppr;
-    }
-    .lunar-pass-input{
-      margin-top:37px/@ppr;
-      padding:0 30px/@ppr;
-      position:relative;
-      height: 68px/@ppr;
-      .lunar-pass-image{
-        display: inline-block;
-        width: 30px/@ppr;
-        height: 38px/@ppr;
-        vertical-align: top;
-        font-size: 0;
-        .lunar-pass-map{
+      .lunar-name-input{
+        margin-top:142px/@ppr;
+        padding:0 30px/@ppr;
+        position: relative;
+        height: 68px/@ppr;
+        .name-image{
           display: inline-block;
-          width: 100%;
-          height: 100%;
+          width: 30px/@ppr;
+          height: 27px/@ppr;
           vertical-align: top;
+          font-size: 0;
+          .name-map{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+          }
+        }
+        .name-input{
+          display: inline-block;
+          height: 30px/@ppr;
+          width: 600px/@ppr;
+          border:none;
+          vertical-align:top;
+          outline: none;
+          font-size: 28px/@ppr;
+          margin-left:30px/@ppr;
         }
       }
-      .pass-input{
-        display: inline-block;
-        height: 30px/@ppr;
-        width: 600px/@ppr;
-        border:none;
-        vertical-align: top;
-        outline: none;
-        margin-left:30px/@ppr;
-      }
-    }
-    .lunar-pass-input:before{
-        content:'';
+      .lunar-name-input:before{
+        content: '';
         display: inline-block;
         width: 690px/@ppr;
         height: 2px/@ppr;
         background-color:#333;
-        position: absolute;
-        bottom:0;
+        position:absolute;
+        bottom: 0;
         left:30px/@ppr;
-    }
-    .show{
-      height: 24px/@ppr;
-      margin-top:30px/@ppr;
-      .lunar-input-slip{
-        text-align: left;
-        padding-left:30px/@ppr;
-        margin-top: 30px/@ppr;
-        display: block;
-        font-size: 0;
-        .lunar-slip-image{
+      }
+      .lunar-pass-input{
+        margin-top:37px/@ppr;
+        padding:0 30px/@ppr;
+        position:relative;
+        height: 68px/@ppr;
+        .lunar-pass-image{
           display: inline-block;
-          width: 24px/@ppr;
-          height: 24px/@ppr;
-          .lunar-slip-map{
+          width: 30px/@ppr;
+          height: 38px/@ppr;
+          vertical-align: top;
+          font-size: 0;
+          .lunar-pass-map{
             display: inline-block;
             width: 100%;
             height: 100%;
+            vertical-align: top;
           }
         }
-        .slip-title{
+        .pass-input{
           display: inline-block;
-          font-size: 28px/@ppr;
-          color: #ff1d25;
-          margin-left:8px/@ppr;
+          height: 30px/@ppr;
+          width: 600px/@ppr;
+          border:none;
+          vertical-align: top;
+          outline: none;
+          margin-left:30px/@ppr;
         }
       }
-    }
-    .lunar-login{
-      margin-top:170px/@ppr;
-      width: 690px/@ppr;
-      height: 88px/@ppr;
-      background-color:#000;
-      display: inline-block;
-      border-radius: 5px;
-      font-size: 32px/@ppr;
-      color: #fff;
-      outline: none;
-    }
-    .login-methods{
-      margin-top:40px/@ppr;
-      display: inline-block;
-      width: 690px/@ppr;
-      .methods-title{
-        font-size:22px/@ppr;
-        line-height: 40px/@ppr;
-        float: left;
-        vertical-align: top;
-        color: #999;
+      .lunar-pass-input:before{
+          content:'';
+          display: inline-block;
+          width: 690px/@ppr;
+          height: 2px/@ppr;
+          background-color:#333;
+          position: absolute;
+          bottom:0;
+          left:30px/@ppr;
       }
-      .others-way{
+      .show{
+        height: 24px/@ppr;
+        margin-top:30px/@ppr;
+        .lunar-input-slip{
+          text-align: left;
+          padding-left:30px/@ppr;
+          margin-top: 30px/@ppr;
+          display: block;
+          font-size: 0;
+          .lunar-slip-image{
+            display: inline-block;
+            width: 24px/@ppr;
+            height: 24px/@ppr;
+            .lunar-slip-map{
+              display: inline-block;
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .slip-title{
+            display: inline-block;
+            font-size: 28px/@ppr;
+            color: #ff1d25;
+            margin-left:8px/@ppr;
+          }
+        }
+      }
+      .lunar-login{
+        margin-top:170px/@ppr;
+        width: 690px/@ppr;
+        height: 88px/@ppr;
+        background-color:#000;
         display: inline-block;
-        vertical-align: top;
-        float: right;
-        line-height: 40px/@ppr;
-        .icon-weixin, .icon-qq, .icon-weiruan{
-          width: 45px/@ppr;
-          height: 45px/@ppr;
-          margin-left: 15px;
+        border-radius: 5px;
+        font-size: 32px/@ppr;
+        color: #fff;
+        outline: none;
+      }
+      .login-methods{
+        margin-top:40px/@ppr;
+        display: inline-block;
+        width: 690px/@ppr;
+        .methods-title{
+          font-size:22px/@ppr;
+          line-height: 40px/@ppr;
+          float: left;
+          vertical-align: top;
+          color: #999;
+        }
+        .others-way{
+          display: inline-block;
+          vertical-align: top;
+          float: right;
+          line-height: 40px/@ppr;
+          .icon-weixin, .icon-qq, .icon-weiruan{
+            width: 45px/@ppr;
+            height: 45px/@ppr;
+            margin-left: 15px;
+          }
         }
       }
     }
   }
-}
 </style>
 
 
